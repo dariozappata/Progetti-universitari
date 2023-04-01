@@ -1,0 +1,238 @@
+@charset "ISO-8859-1";
+
+body { background-color:  #ebecf0 !important; 
+	width: 65%;
+	margin: auto;
+	border-radius: 10px;
+	}
+	
+html {
+	background-image: url("files/RandomBG.png");
+	background-position: center;
+	}
+
+ body, p, input, select, textarea, button {
+	 font-family: 'Montserrat', sans-serif;
+	 letter-spacing: -0.2px;
+	 font-size: 16px;
+}
+ div, p {
+	 color: #000;
+	 text-shadow: 1px 1px 1px #fff;
+}
+ form {
+	 padding: 16px;
+	 width: 90%;
+	 margin: 0 auto;
+}
+ .segment {
+	 padding: 32px 0;
+	 text-align: center;
+}
+ button, input, textarea {
+	 border: 0;
+	 outline: 0;
+	 font-size: 16px;
+	 border-radius: 320px;
+	 padding: 16px;
+	 background-color: #ebecf0;
+	 text-shadow: 1px 1px 0 #fff;
+}
+ label {
+	 display: block;
+	 width: 100%;
+}
+ input, textarea {
+	 box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;
+	 width: 80%;
+	 box-sizing: border-box;
+	 transition: all 0.2s ease-in-out;
+	 appearance: none;
+	 -webkit-appearance: none;
+}
+ input:focus {
+	 box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+}
+ button {
+	 color: #61677c;
+	 font-weight: bold;
+	 box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
+	 transition: all 0.2s ease-in-out;
+	 cursor: pointer;
+	 font-weight: 600;
+}
+ button:hover {
+	 box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
+}
+ button:active {
+	 box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+}
+ button .icon {
+	 margin-right: 8px;
+}
+ button.unit {
+	 border-radius: 8px;
+	 line-height: 0;
+	 width: 48px;
+	 height: 48px;
+	 display: inline-flex;
+	 justify-content: center;
+	 align-items: center;
+	 margin: 0 8px;
+	 font-size: 19.2px;
+}
+ button.unit .icon {
+	 margin-right: 0;
+}
+ button.red {
+	 display: block;
+	 width: 100%;
+	 color: #ae1100;
+}
+ .input-group {
+	 display: flex;
+	 align-items: center;
+	 justify-content: flex-start;
+}
+ .input-group label {
+	 margin: 0;
+	 flex: 1;
+}
+
+/*Menu*/
+
+@import url('https://fonts.googleapis.com/css?family=Oswald:500');
+
+
+ .thx {
+	 position: fixed;
+	 left: 50%;
+	 transform: translateX(-50%);
+	 bottom: 15px;
+}
+ nav {
+	 width: 100%;
+	 position: initial;
+	 top: 50px;
+	 text-align: center;
+}
+ nav a {
+	 font-family: 'Oswald', sans-serif;
+	 font-weight: 500;
+	 text-transform: uppercase;
+	 text-decoration: none;
+	 color: #16151b;
+	 margin: 0 15px;
+	 font-size: 16px;
+	 letter-spacing: 1px;
+	 position: relative;
+	 display: inline-block;
+}
+ nav a:before {
+	 content: '';
+	 position: absolute;
+	 width: 100%;
+	 height: 3px;
+	 background: #16151b;
+	 top: 47%;
+	 animation: out 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
+}
+ nav a:hover:before {
+	 animation: in 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
+}
+ @keyframes in {
+	 0% {
+		 width: 0;
+		 left: 0;
+		 right: auto;
+	}
+	 100% {
+		 left: 0;
+		 right: auto;
+		 width: 100%;
+	}
+}
+ @keyframes out {
+	 0% {
+		 width: 100%;
+		 left: auto;
+		 right: 0;
+	}
+	 100% {
+		 width: 0;
+		 left: auto;
+		 right: 0;
+	}
+}
+ @keyframes show {
+	 0% {
+		 opacity: 0;
+		 transform: translateY(-10px);
+	}
+	 100% {
+		 opacity: 1;
+		 transform: translateY(0);
+	}
+}
+ nav a:nth-child(1) {
+	 animation: show 0.2s 1.1s ease 1 both;
+}
+ nav a:nth-child(2) {
+	 animation: show 0.2s 1.2s ease 1 both;
+}
+ nav a:nth-child(3) {
+	 animation: show 0.2s 1.3s ease 1 both;
+}
+ nav a:nth-child(4) {
+	 animation: show 0.2s 1.4s ease 1 both;
+}
+ nav a:nth-child(5) {
+	 animation: show 0.2s 1.5s ease 1 both;
+}
+
+/* Autocomplete */
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+
+/* Form Table */
+.table_form {
+	display: table
+}
+.sub_table {
+	display: table-cell
+}
+
+/* Nav Buttons */
+.nav_form {
+	display: inline-block;
+	width: auto;
+}
