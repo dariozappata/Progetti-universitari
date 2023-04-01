@@ -1,0 +1,55 @@
+%{
+#include <string.h>
+#include<stdlib.h>
+#include "parser.tab.h"
+%}
+%option noyywrap
+dataClassifica ([0][1-9]|[1-2][0-9]|([3][0-1]))[/](([0][1-9])|([1][0-2]))[/]([0-9]{2})
+codiceAtleta [A-Z]{2}[0-9]{4}
+nomeCogn [A-Z][a-z]*([ ][A-Z][a-z]*)*
+squadraAtleta ([a-z]+[ ]?)+
+nPettorale [1-9]|[1-9][0-9]|[1-9][0-9][0-9]
+data ([0][1-9]|[1-2][0-9]|([3][0-1]))[/](([0][1-9])|([1][0-2]))
+citta [A-Z][a-z]*([ ][A-Z]?[a-z]*)*
+tempo [0-9]([:])[0-5][0-9]([:])[0-5][0-9]
+%s condNome condCitta
+%%
+[ \t\n]+ ;
+"Data:"                     {return(DATA);}
+{dataClassifica}            {yylval.string= strdup(yytext); return(DATA_T);}
+"%%"                        {return(SEP_SEZ_1);}
+"Codice :"                  {return(CODICE);}
+{codiceAtleta}              {yylval.string= strdup(yytext); return(CODICE_T);}
+"Cognome e nome:"           {BEGIN(condNome); return(NOME_COGN);}
+"Squadra:"                  {return(SQUADRA);}
+{squadraAtleta}             {yylval.string= strdup(yytext); return(SQUADRA_T);}
+"Pettorale:"                {return (PETTORALE);}
+{nPettorale}                {yylval.intero= atoi(yytext); return(PETTORALE_T);}
+"&&&"                       {return(SEP_ATL);}
+"$$"                        {BEGIN(condCitta);return(SEP_SEZ_2);}
+{data}                      {yylval.string= strdup(yytext); return(DATA_TAPPA_T);}
+"-"                         {return(TRATTINO);}
+"("                         {return(APRI_P);}
+")"                         {return(CHIUDI_P);}
+":"                         {return(DUE_PUNTI);}
+"->"                        {return(FRECCIA);}
+{tempo}                     {
+                                char *s= strdup(yytext);
+                                int h,m1,m2,s1,s2;
+                                h= s[0]-'0';
+                                m1=s[2]-'0';
+                                m2=s[3]-'0';
+                                s1=s[5]-'0';
+                                s2=s[6]-'0';
+                                yylval.intero= (h*3600+((m1*10+m2)*60)+(s1*10+s2));
+                                return(TEMPO);
+                            }
+. {
+		fprintf(stderr,"Rilevati caratteri non ammessi: %s \n",strdup(yytext));
+		exit(1);
+}
+
+<condNome>{nomeCogn} { yylval.string=strdup(yytext); return(NOME_COGN_T);}
+<condCitta>{citta}   { yylval.string=strdup(yytext); return(CITTA);}
+
+%%
